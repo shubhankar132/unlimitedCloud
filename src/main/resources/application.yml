@@ -1,5 +1,7 @@
 server:
   port: 8080
+
+spring:
   application:
     name: cloudvault
   datasource:
@@ -26,8 +28,3 @@ server:
               - profile
               - https://www.googleapis.com/auth/photoslibrary.readonly
               - https://www.googleapis.com/auth/drive.readonly
-test-value: ${GOOGLE_CLIENT_ID:NOT_LOADED}
-
-# logging:
-#   level:
-#     org.springframework.boot: DEBUG
