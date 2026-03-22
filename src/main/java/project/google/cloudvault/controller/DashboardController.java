@@ -19,7 +19,7 @@ public class DashboardController {
         json_response.put("email", email);
         json_response.put("name", name);
         json_response.put("profile", profile_picture_id);
-
+        json_response.put("id", principal.getName());
         return json_response;
     }
 
