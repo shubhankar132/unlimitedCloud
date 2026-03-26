@@ -17,11 +17,12 @@ public class SecurityConfig {
                                                 .requestMatchers("/", "/error").permitAll()
                                                 .anyRequest().authenticated())
                                 .oauth2Login(oauth2 -> oauth2
-                                                .defaultSuccessUrl("/dashboard", false))
+                                                .defaultSuccessUrl("/api/photos", true))
                                 .logout(logout -> logout
-                                                .logoutSuccessUrl("/"));
+                                                .logoutSuccessUrl("/")
+                                                .deleteCookies("JSESSIONID")
+                                                .invalidateHttpSession(true));
 
                 return http.build();
         }
-
 }
