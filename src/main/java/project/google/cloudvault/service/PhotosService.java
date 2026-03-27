@@ -30,7 +30,7 @@ public class PhotosService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         ResponseEntity<String> response = template.exchange(
-                "https://www.googleapis.com/drive/v3/files?q=mimeType+contains+'image/'&fields=files(id,name,mimeType,thumbnailLink,webViewLink)",
+                "https://www.googleapis.com/drive/v3/files?q=mimeType+contains+'image/'&fields=files(id,name,mimeType,thumbnailLink,webViewLink,createdTime,imageMediaMetadata)",
                 HttpMethod.GET,
                 entity,
                 String.class);
