@@ -2,7 +2,10 @@ package project.google.cloudvault.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import project.google.cloudvault.model.PhotoItem;
 import project.google.cloudvault.service.PhotosService;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,8 +18,8 @@ public class PhotosController {
     private PhotosService photos;
 
     @GetMapping("/api/photos")
-    public String getPhotos(@AuthenticationPrincipal OAuth2User principal) {
-        String photo = photos.getPhotos(principal);
+    public List<PhotoItem> getPhotos(@AuthenticationPrincipal OAuth2User principal) {
+        List<PhotoItem> photo = photos.getPhotos(principal);
         return photo;
     }
 

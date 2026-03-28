@@ -17,7 +17,7 @@ public class SecurityConfig {
                                                 .requestMatchers("/", "/error").permitAll()
                                                 .anyRequest().authenticated())
                                 .oauth2Login(oauth2 -> oauth2
-                                                .defaultSuccessUrl("/api/photos", true))
+                                                .defaultSuccessUrl("/photos.html", true))
                                 .logout(logout -> logout
                                                 .logoutSuccessUrl("/")
                                                 .deleteCookies("JSESSIONID")

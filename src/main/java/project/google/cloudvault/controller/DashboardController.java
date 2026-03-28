@@ -25,7 +25,7 @@ public class DashboardController {
 
     @GetMapping("/")
     public String home() {
-        return "Welcome to UnlimitedCloud! <a href='/dashboard'>Login</a>";
+        return "Welcome to UnlimitedCloud! <a href='/photos.html'>Dashboard</a>";
     }
 
 }
