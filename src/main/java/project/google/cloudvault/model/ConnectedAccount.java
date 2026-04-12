@@ -1,5 +1,7 @@
 package project.google.cloudvault.model;
 
+import java.time.Instant;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,6 @@ public class ConnectedAccount {
     private MasterUser masterUserID;
     private String accessToken;
     private String refreshToken;
-    private String tokenExpiry;
+    private Instant tokenExpiry;
 
 }
