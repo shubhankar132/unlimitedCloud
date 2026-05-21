@@ -4,19 +4,30 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import project.google.cloudvault.model.ConnectedAccount;
+import project.google.cloudvault.model.MasterUser;
+import project.google.cloudvault.repository.ConnectedAccountRepository;
 import project.google.cloudvault.repository.MasterUserRepository;
 
 import java.util.Map;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class DashboardController {
-
-    private final MasterUserRepository masterUserRepository;
-
-    DashboardController(MasterUserRepository masterUserRepository) {
-        this.masterUserRepository = masterUserRepository;
-    }
+    @Autowired
+    private MasterUserRepository masterUserRepository;
+    @Autowired
+    private ConnectedAccountRepository connectedAccountRepository;
+    // DashboardController(MasterUserRepository masterUserRepository) {
+    // this.masterUserRepository = masterUserRepository;
+    // }
 
     @GetMapping("/dashboard")
     public Map<String, Object> dashboard(@AuthenticationPrincipal OAuth2User principal) {
@@ -36,12 +47,24 @@ public class DashboardController {
         return "Welcome to UnlimitedCloud! <a href='/photos.html'>Dashboard</a>";
     }
 
+    @GetMapping("/add-connected-account")
+    public void add_connected_account(HttpServletRequest request, HttpServletResponse response,
+            Authentication authentication) throws IOException {
+        String sessionId = authentication.getName();
+        request.getSession().setAttribute("masterGoogleSubjectId", sessionId);
+        response.sendRedirect("/oauth2/authorization/google");
+    }
+
     // FOR TESTING DB ENTRIES
-    // @Autowired
-    // private MasterUserRepository masterUser;
+
     // @GetMapping("/dbEntries")
     // public List<MasterUser> dbEntries() {
-    // return masterUser.findAll();
+    //     return masterUserRepository.findAll();
+    // }
+
+    // @GetMapping("/dbEntries/connected")
+    // public List<ConnectedAccount> connectedEntries() {
+    //     return connectedAccountRepository.findAll();
     // }
 
 }

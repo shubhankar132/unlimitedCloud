@@ -19,6 +19,9 @@ public class SecurityConfig {
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers("/", "/error").permitAll()
                                                 .anyRequest().authenticated())
+                                .sessionManagement(session -> session
+                                                .sessionFixation()
+                                                .migrateSession())
                                 .oauth2Login(oauth2 -> oauth2
                                                 .successHandler(authSuccessHandler))
                                 .logout(logout -> logout
