@@ -31,4 +31,4 @@ spring:
               - https://www.googleapis.com/auth/drive.readonly
         provider:
           google:
-            authorization-uri: https://accounts.google.com/o/oauth2/auth?prompt=consent&access_type=offline
+            authorization-uri: https://accounts.google.com/o/oauth2/auth?prompt=select_account&access_type=offline
